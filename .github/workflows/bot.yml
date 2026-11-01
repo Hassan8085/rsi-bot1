@@ -31,3 +31,9 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHANNEL: "@Trading_ACO1"
           TFS: "30m"
+          TOP_N: "300"
+          MIN_VOL: "1000000"
+          OB: "70"
+          OS: "30"
+          MAX_PER_SCAN: "10"
+          COOLDOWN: "7200"
