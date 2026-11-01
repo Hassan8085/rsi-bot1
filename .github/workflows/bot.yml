@@ -30,3 +30,4 @@ jobs:
           ONCE: "1"
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHANNEL: "@Trading_ACO1"
+          TFS: "30m"
