@@ -1,0 +1,32 @@
+name: RSI Bot
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: rsi-bot
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Restore state
+        uses: actions/cache@v4
+        with:
+          path: state.json
+          key: state-${{ github.run_id }}
+          restore-keys: state-
+      - run: python bot.py
+        env:
+          ONCE: "1"
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHANNEL: "@Trading_ACO1"
